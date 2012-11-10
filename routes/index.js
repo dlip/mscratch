@@ -24,3 +24,21 @@ exports.save = function(req, res){
   	res.send({ result: err?"Error":"Ok" });
   });
 };
+
+exports.list = function(req, res){
+  fs = require("fs");
+  fs.readdir('doc/', function(err, filelist) {
+  	console.log(filelist);
+  	filelist.sort();
+
+  	var sortedfilelist = new Array;
+  	for (var index in filelist) {
+  		if(filelist[index].indexOf(".md") != -1) {
+  			cutfile = filelist[index].substring(0,filelist[index].length-3)
+  			sortedfilelist.push(cutfile);
+  		}
+  	}
+
+    res.render('list', { title: 'MScratch', files: sortedfilelist });
+  });
+};
