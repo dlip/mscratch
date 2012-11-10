@@ -3,8 +3,9 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
+  #save Save
   .wmd-panel
     #wmd-button-bar
-    textarea.wmd-input#wmd-input
+    textarea.wmd-input#wmd-input #{text}
 
   #wmd-preview.wmd-panel.wmd-preview
