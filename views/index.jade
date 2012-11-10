@@ -2,11 +2,13 @@ extends layout
 
 block content
   h1= title
+  a(href='/list') List All
   p Welcome to #{title}
   p File 
     span#markdownfile #{markdownfile}
   #mscratch-save Save
   #mscratch-edit Edit
+  #mscratch-delete Delete
   .wmd-panel
     #wmd-button-bar
     textarea.wmd-input#wmd-input #{text}

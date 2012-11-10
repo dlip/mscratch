@@ -28,6 +28,7 @@ app.configure('development', function(){
 });
 
 app.post('/', routes.save);
+app.delete('/', routes.delete);
 app.get('/list', routes.list);
 app.get('/:markdownfile?', routes.index);
 

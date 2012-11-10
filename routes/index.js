@@ -20,9 +20,33 @@ exports.index = function(req, res){
 exports.save = function(req, res){
   console.log(req.body);
   fs = require("fs");
-  fs.writeFile('doc/' + req.body.markdownfile + '.md', req.body.text, function (err) {
-  	res.send({ result: err?"Error":"Ok" });
+ 
+  writeFile = function() {
+  	fs.writeFile('doc/' + req.body.markdownfile + '.md', req.body.text, function (err) {
+		res.send({ result: err?"Error":"Ok" });
+	});
+  };
+  fs.exists = fs.exists || require('path').exists;
+  fs.exists('doc/', function (exists) {
+  	if(!exists) {
+  		fs.mkdir('doc', function() {
+		writeFile();
+		});
+  	}
+  	else {
+  		writeFile();
+  	}
+
   });
+ 
+};
+
+exports.delete = function(req, res){
+	fs = require("fs");
+	console.log(req.body.markdownfile );
+	fs.unlink('doc/' + req.body.markdownfile + '.md', function() {
+		res.send({ result: "Ok" });
+	});
 };
 
 exports.list = function(req, res){

@@ -3,8 +3,13 @@ $(document).ready(function () {
 	var editor1 = new Markdown.Editor(converter1);
 	editor1.run();
 
-	$('#wmd-input').hide();
-	$('#wmd-button-bar').hide();
+	if($('#wmd-input').val().length == 0) {
+		$('#wmd-input').focus();
+	}
+	else {
+		$('#wmd-input').hide();
+		$('#wmd-button-bar').hide();
+	}
 	
 	
 	$('#mscratch-edit').click(function() {
@@ -25,6 +30,26 @@ $(document).ready(function () {
 		}
 		
 	});
+
+	$('#mscratch-delete').click(function() {
+		var r=confirm("Really delete?");
+		if (r!=true){
+			return;
+		}
+		
+		var data = {
+			markdownfile: $('#markdownfile').text(),
+		}
+		$.ajax({
+		  url: '/',
+		  type: 'DELETE',
+		  data: data,
+		  success: function(text) {
+		    location.reload();
+		  }
+		});
+	});
+
 
 	$('#mscratch-save').click(function() {
 		var data = {
