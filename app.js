@@ -27,7 +27,7 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
-app.get('/', routes.index);
+app.get('/:markdownfile?', routes.index);
 app.post('/', routes.save);
 app.get('/users', user.list);
 
