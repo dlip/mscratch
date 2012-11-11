@@ -1,6 +1,11 @@
 $(document).ready(function () {
 	var converter1 = Markdown.getSanitizingConverter();
 	var editor1 = new Markdown.Editor(converter1);
+
+	converter1.hooks.chain("postConversion", function (text) {
+                    return text.replace(/\[(.*)\]/gi, '<a href="\/$1">$1</a>');
+                });
+
 	editor1.run();
 
 	if($('#wmd-input').val().length == 0) {
@@ -21,6 +26,7 @@ $(document).ready(function () {
 		    $('#wmd-input').val('');
 		    $('#wmd-input').focus();
 		    $('#wmd-input').val(temp);
+		    $('#wmd-input').height( $('#wmd-preview').height());
 
 		}
 		else {

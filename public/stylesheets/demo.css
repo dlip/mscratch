@@ -32,6 +32,7 @@ body
 	background-color: #c0e0ff; 
 	margin-top: 35px;
 	margin-left: 20px;
+	max-width: 40%;
 }
 
 .wmd-button-row 

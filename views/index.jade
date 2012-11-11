@@ -2,7 +2,10 @@ extends layout
 
 block content
   h1= title
-  a(href='/list') List All
+  p
+    a(href='/list') List All
+  p 
+    a(href='/') Index
   p Welcome to #{title}
   p File 
     span#markdownfile #{markdownfile}

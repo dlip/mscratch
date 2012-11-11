@@ -2,8 +2,19 @@ extends layoutnojs
 
 block content
   h1= title
+  p 
+    a(href='/') Index
+  h2 Blog
+  p Today 
+    a(href='/' + todayfile)= todayfile
+  each f in blogfiles
+    li
+      a(href='/' + f.file)= f.file
+    p= f.contents
+
   h2 File Listing
 
-  each filename in files
+  each f in files
     li
-      a(href='/' + filename)= filename
+      a(href='/' + f.file)= f.file
+    p= f.contents	
